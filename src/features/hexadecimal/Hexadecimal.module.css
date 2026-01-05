@@ -3,3 +3,12 @@
   width: 500px;
   background-color: var(--bg-color);
 }
+
+.basicRectangleContainer {
+  height: 600px;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
