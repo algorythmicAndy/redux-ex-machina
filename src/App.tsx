@@ -1,5 +1,6 @@
 import "./App.css"
 import { Counter } from "./features/counter/Counter"
+import { Hexidecimal } from "./features/hexadecimal/Hexadecimal"
 import { Quotes } from "./features/quotes/Quotes"
 import logo from "./logo.svg"
 
@@ -59,6 +60,7 @@ export const App = () => (
           Reselect
         </a>
       </span>
+      <Hexidecimal />
     </header>
   </div>
 )
