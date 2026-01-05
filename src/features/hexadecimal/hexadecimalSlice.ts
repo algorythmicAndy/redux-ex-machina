@@ -108,17 +108,14 @@ function parseHexAndOperate(
   step: number,
   addition: boolean,
 ): string {
-  //check hex last item when added is modded?
   let valid = false
   const array = hex.split("")
   let i = array.length - 1
   while (!valid) {
     const numChar = parseInt(array[i], 16)
     if (isNaN(numChar) && numChar !== 0) {
-      console.log("NAN")
       return addition ? initialState.hex : "ffffff"
     }
-    console.log("NUMCHAR", numChar)
     const stepped = addition ? add(numChar, step) : subtract(numChar, step)
     if (addition ? stepped > 15 : stepped < 0) {
       const rolled = remainderFromModulo(numChar, HEXMOD, step, addition)
@@ -126,7 +123,6 @@ function parseHexAndOperate(
       i--
       continue
     } else {
-      console.log("CHECK - not rolled")
       const value = remainderFromModulo(
         numChar,
         HEXMOD,
