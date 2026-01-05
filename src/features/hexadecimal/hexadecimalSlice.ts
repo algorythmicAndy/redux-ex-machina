@@ -75,7 +75,7 @@ function produceRandomHex(): string {
   const randomiser = new Prando()
   for (let i = 0; i < 6; i++) {
     const randomHex = randomiser.nextInt(0, 16)
-    hexes.push(toHex(randomHex))
+    hexes.push(randomHex.toBase16())
   }
   return hexes.join("")
 }
@@ -119,7 +119,7 @@ function parseHexAndOperate(
     const stepped = addition ? add(numChar, step) : subtract(numChar, step)
     if (addition ? stepped > 15 : stepped < 0) {
       const rolled = remainderFromModulo(numChar, HEXMOD, step, addition)
-      array.splice(i, 1, toHex(rolled))
+      array.splice(i, 1, rolled.toBase16())
       i--
       continue
     } else {
@@ -129,7 +129,7 @@ function parseHexAndOperate(
         addition ? step : -step,
         addition,
       )
-      array.splice(i, 1, toHex(value))
+      array.splice(i, 1, value.toBase16())
       valid = true
     }
     i--
@@ -138,7 +138,7 @@ function parseHexAndOperate(
 }
 
 /**
- *
+ * Infinite modulo to prevent overflow and invalid character - number conversions
  * @param {number} value - value to be evaluated
  * @param {number} dividend - (16) modulus of base 16
  * @param {number} step - number to augment value by
@@ -157,8 +157,4 @@ function remainderFromModulo(
     return result < 0 ? result * -1 : result
   }
   return stepAdjustedValue % dividend
-}
-
-function toHex(value: number): string {
-  return value.toString(16)
 }
